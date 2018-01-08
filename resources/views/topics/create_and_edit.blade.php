@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea name="body" class="form-control" id="editor" rows="3" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body ) }}</textarea>
+                        <textarea name="body" class="form-control-textarea" id="editor" placeholder="请填入至少三个字符的内容。" required>{{ old('body', $topic->body ) }}</textarea>
                     </div>
 
                     <div class="well well-sm">
@@ -56,3 +56,22 @@
 </div>
 
 @endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('editor/ueditor.config.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('editor/ueditor.all.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            var editor = UE.getEditor('editor',
+            {toolbars:[[ 'bold','horizontal','fontsize','lineheight','justifyleft','justifyright','justifycenter']],
+            elementPathEnabled:false,//是否启用元素路径
+            wordCount:false,//是否开启字数统计
+            enableContextMenu:false,//是否开启右键菜单
+            enableAutoSave:false,//是否自动保存
+            fontsize:[12,14, 16, 18, 20],//字号
+            lineheight:['1','2','3'],//行间距
+            scaleEnabled:true
+            });
+        });
+    </script>
+@stop
