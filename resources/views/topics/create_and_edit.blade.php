@@ -57,21 +57,40 @@
 
 @endsection
 
-@section('scripts')
-    <script type="text/javascript" src="{{ asset('editor/ueditor.config.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('editor/ueditor.all.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-            var editor = UE.getEditor('editor',
-            {toolbars:[[ 'bold','horizontal','fontsize','lineheight','justifyleft','justifyright','justifycenter']],
-            elementPathEnabled:false,//是否启用元素路径
-            wordCount:false,//是否开启字数统计
-            enableContextMenu:false,//是否开启右键菜单
-            enableAutoSave:false,//是否自动保存
-            fontsize:[12,14, 16, 18, 20],//字号
-            lineheight:['1','2','3'],//行间距
-            scaleEnabled:true
-            });
-        });
-    </script>
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/simditor.css') }}">
 @stop
+
+@section('scripts')
+    <script type="text/javascript"  src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript"  src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+    $(document).ready(function(){
+        var editor = new Simditor({
+            textarea: $('#editor'),
+        });
+    });
+    </script>
+
+@stop
+
+{{--  <script type="text/javascript" src="{{ asset('editor/ueditor.config.js') }}"></script>
+<script type="text/javascript" src="{{ asset('editor/ueditor.all.js') }}"></script>
+<script>
+    $(document).ready(function(){
+        var editor = UE.getEditor('editor',
+        {toolbars:[[ 'bold','horizontal','fontsize','lineheight','justifyleft','justifyright','justifycenter']],
+        elementPathEnabled:false,//是否启用元素路径
+        wordCount:false,//是否开启字数统计
+        enableContextMenu:false,//是否开启右键菜单
+        enableAutoSave:false,//是否自动保存
+        fontsize:[12,14, 16, 18, 20],//字号
+        lineheight:['1','2','3'],//行间距
+        scaleEnabled:false,
+        height:150
+        });
+    });
+</script>  --}}
