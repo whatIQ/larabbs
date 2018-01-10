@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'introduction', 'avatar'
+        'name', 'email', 'password', 'introduction', 'avatar',
     ];
 
     /**
@@ -35,5 +35,10 @@ class User extends Authenticatable
     public function isAuthorOf($model)
     {
         return $this->id == $model->user_id;
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
     }
 }
