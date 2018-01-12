@@ -49,4 +49,11 @@ class TopicObserver
             dispatch(new TranslateSlug($topic));
         }
     }
+
+    public function deleted(Topic $topic)
+    {
+        // 数据库操作需要避免再次 Elequent 事件
+        \DB::table('replies')->where('topic_id',$topic->id)->delete();
+        // $topic->replies()->delete();
+    }
 }
